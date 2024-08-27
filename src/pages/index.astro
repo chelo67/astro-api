@@ -1,0 +1,126 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <!-- CONTENEDOR -->
+  <section class="container">
+    <!-- ENCABEZADO -->
+    <header id="header"></header>
+
+    <!-- PERFIL -->
+    <section class="perfil">
+      <img id="foto-perfil" src="" alt="Perfil de Carolina Gonzalez">
+      <div class="name">
+        <h1 id="nombre">Carolina Gonzalez</h1>
+        <p id="puesto">Frontend Developer</p>
+      </div>
+    </section>
+  </section>
+
+  <script
+    src="https://kit.fontawesome.com/dbb4fa1064.js"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- Script para obtener y renderizar los datos dinámicamente -->
+  <script>
+    async function fetchData() {
+      const apiURL = 'https://ingenious-jaguar-f974f7.instawp.xyz/wp-json/wp/v2/tarjeta?author=3&acf_format=standard';
+      
+      try {
+        const response = await fetch(apiURL);
+        const tarjetas = await response.json();
+        const tarjeta = tarjetas[0]; // Suponiendo que solo hay un objeto que contiene los datos necesarios
+
+        // Actualizar la imagen de fondo del encabezado
+        const headerElement = document.getElementById('header');
+        headerElement.style.backgroundImage = `url(${tarjeta.acf.imagen_top})`;
+
+        // Actualizar la foto de perfil
+        // Obtener el elemento de la imagen de perfil
+		const fotoPerfilElement = document.getElementById('foto-perfil') as HTMLImageElement;
+		fotoPerfilElement.src = tarjeta.acf.foto;
+
+
+        // Actualizar el nombre
+        const nombreElement = document.getElementById('nombre');
+        nombreElement.textContent = tarjeta.acf.nombre;
+
+        // Actualizar el puesto
+        const puestoElement = document.getElementById('puesto');
+        puestoElement.textContent = tarjeta.acf.puesto;
+        
+      } catch (error) {
+        console.error('Error al obtener los datos:', error);
+      }
+    }
+
+    fetchData();
+
+    // Opcional: Recargar los datos cada cierto tiempo
+    setInterval(fetchData, 60000); // Recarga los datos cada 60 segundos
+  </script>
+</Layout>
+
+<style>
+  /* reset */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    width: 650px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  header {
+    background-position: center;
+    background-size: cover;
+    height: 200px;
+    width: 650px;
+    margin: 15px;
+    border-radius: 20px 20px 0 0;
+  }
+  .perfil {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    margin: -55px;
+  }
+  .perfil img {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 120px;
+    height: 120px;
+    border: 6px solid white;
+  }
+  .perfil .name {
+    height: 100px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .perfil .name h1 {
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+  }
+  .perfil .name p {
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+  }
+</style>

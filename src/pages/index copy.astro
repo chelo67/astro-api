@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+ 
+ <Layout>
+ <!-- CONTENEDOR -->
+    <section class="container">
+
+		<!-- ENCABEZADO -->
+		<header></header>
+
+		<!-- PERFIL -->
+		 <section class="perfil">
+			
+				<img src="../../src/img/foto_perfil.jpg" alt="">
+			
+			<div class="name">
+				<h1>Carolina Gonzalez</h1>
+				<p>Frontend Developer</p>
+			</div>
+		 </section>
+	</section>
+
+	<script
+      src="https://kit.fontawesome.com/dbb4fa1064.js"
+      crossorigin="anonymous"
+    ></script>
+
+</Layout>
+
+<style>
+  /* reset */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+  }
+  .container {
+    display: flex;
+	flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    width: 650px;
+    margin: 0 auto;
+	padding: 0;
+  }
+header {
+	background-image: url('../img/bg_encabezado.jpg');
+	background-position: center;
+	background-size: cover;
+	height: 200px;
+	width: 650px;
+	margin: 15px;
+	border-radius: 20px 20px 0 0;
+}
+.perfil {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width:90%;
+	margin: -55px;
+}
+.perfil img {
+	border-radius: 50%;
+	overflow: hidden;
+	width: 120px;
+	height: 120px;
+	border:6px solid white;
+}
+.perfil .name {
+	height: 100px;
+	margin-bottom: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+}
+.perfil .name h1 {
+	font-family: 'Lobster', cursive;
+	font-size: 30px;
+}
+.perfil .name p {
+	font-size: 14px;
+	font-family: 'Poppins', sans-serif;
+}
+</style>
