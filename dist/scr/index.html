@@ -1,0 +1,12 @@
+<!DOCTYPE html><script type="module">async function n(){const o=await(await fetch("https://ingenious-jaguar-f974f7.instawp.xyz/wp-json/wp/v2/autos?author=2&acf_format=standard")).json(),e=document.getElementById("autos-list");if(o&&Array.isArray(o)&&o.length>0){const r=o.map(s=>`
+						<li key="${s.id}">
+							<h2 class="text-2xl font-bold text-blue-600">${s.title.rendered}</h2>
+							${s.imageUrl?`<img src="${s.imageUrl}" alt="${s.title.rendered}" />`:""}
+							<p style="color: ${s.acf.color}">Marca: ${s.acf.marca}</p>
+							<p ><strong>Modelo:</strong> ${s.acf.modelo}</p>
+							<p><strong>Descripción:</strong> ${s.acf.descripcion}</p>
+							<p><strong>Color:</strong> <span style="color: ${s.acf.color}">${s.acf.color}</span></p>
+							${s.acf.foto?`<div><img src="${s.acf.foto}" alt="${s.acf.marca}" /></div>`:""}
+						</li>
+					`).join("");e.innerHTML=`<ul>${r}</ul>`}else e.innerHTML="<p>No se pudieron recuperar los datos o no hay autos disponibles.</p>"}n();
+</script><div id="autos-list">Cargando autos...</div> 
